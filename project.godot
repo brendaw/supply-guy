@@ -10,7 +10,7 @@ config_version=4
 
 [application]
 
-config/name="Support Guy"
+config/name="Supply Guy"
 config/icon="res://icon.png"
 
 [physics]
