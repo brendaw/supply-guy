@@ -1,7 +1,6 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=4 format=2]
 
-[ext_resource path="res://Player.png" type="Texture" id=1]
-[ext_resource path="res://Player.gd" type="Script" id=2]
+[ext_resource path="res://Mate.png" type="Texture" id=1]
 
 [sub_resource type="SpriteFrames" id=1]
 animations = [ {
@@ -19,8 +18,7 @@ animations = [ {
 [sub_resource type="RectangleShape2D" id=2]
 extents = Vector2( 15, 20 )
 
-[node name="Player" type="Area2D"]
-script = ExtResource( 2 )
+[node name="Mate" type="Area2D"]
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
 scale = Vector2( 2, 2 )
@@ -29,5 +27,3 @@ animation = "walk"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource( 2 )
-
-[connection signal="body_entered" from="." to="." method="_on_Player_body_entered"]

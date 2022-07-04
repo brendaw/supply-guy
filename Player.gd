@@ -2,10 +2,21 @@ extends Area2D
 
 export var speed = 200
 
+# TO-DO: Implement AI for shoot and get behind the barricade
+# TO-DO: Implement the logic for running low of resources.
+
 var screen_size
+
+signal hit
+
+func start(pos):
+	position = pos
+	show()
+	$CollisionShape2D.disabled = false
 
 func _ready():
 	screen_size = get_viewport_rect().size
+	hide()
 	
 func _process(delta):
 	var velocity = Vector2.ZERO
@@ -28,6 +39,11 @@ func _process(delta):
 	else:
 		$AnimatedSprite.stop()
 	
+	if velocity.x < 0:
+		$AnimatedSprite.flip_h = true
+	else:
+		$AnimatedSprite.flip_h = false
+	
 	position += velocity * delta
 	position.x = clamp(position.x, 0, screen_size.x)
 	position.y = clamp(position.y, 0, screen_size.y)
@@ -35,3 +51,6 @@ func _process(delta):
 func key_pressed(key):
 	return Input.is_action_pressed(key)
 
+func _on_Player_body_entered(body):
+	emit_signal("hit")
+	$CollisionShape2D.set_deferred("disabled", true)
