@@ -1,6 +1,7 @@
 extends Node
 
 export (PackedScene) var mate_scene
+export (PackedScene) var barricade_scene
 
 var is_game_over
 
@@ -11,8 +12,13 @@ func _ready():
 func new_game():
 	is_game_over = false
 	
+	instanciate_player()
+	instanciate_mates()
+
+func instanciate_player():
 	$PlayerStuff/Player.start($PlayerStuff/StartPosition.position)
-	
+
+func instanciate_mates():
 	var mate_one = mate_scene.instance()
 	mate_one.position = $MateStuff/FirstStartPosition.position
 	
