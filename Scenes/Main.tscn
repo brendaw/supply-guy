@@ -1,0 +1,75 @@
+[gd_scene load_steps=8 format=2]
+
+[ext_resource path="res://Scenes/Main.gd" type="Script" id=1]
+[ext_resource path="res://Scenes/Mate.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Scenes/Barricade.tscn" type="PackedScene" id=3]
+[ext_resource path="res://Scenes/Player.tscn" type="PackedScene" id=4]
+[ext_resource path="res://Scenes/WaterResource.tscn" type="PackedScene" id=5]
+[ext_resource path="res://Scenes/BandageResource.tscn" type="PackedScene" id=6]
+[ext_resource path="res://Scenes/KevlarResource.tscn" type="PackedScene" id=7]
+
+[node name="Main" type="Node"]
+script = ExtResource( 1 )
+mate_scene = ExtResource( 2 )
+barricade_scene = ExtResource( 3 )
+
+[node name="PlayerStuff" type="Node" parent="."]
+
+[node name="Player" parent="PlayerStuff" instance=ExtResource( 4 )]
+
+[node name="StartPosition" type="Position2D" parent="PlayerStuff"]
+position = Vector2( 200, 450 )
+
+[node name="MateStuff" type="Node" parent="."]
+
+[node name="FirstStartPosition" type="Position2D" parent="MateStuff"]
+position = Vector2( 42, 400 )
+
+[node name="SecondStartPosition" type="Position2D" parent="MateStuff"]
+position = Vector2( 358, 400 )
+
+[node name="ThirdStartPosition" type="Position2D" parent="MateStuff"]
+position = Vector2( 358, 315 )
+
+[node name="FourthStartPosition" type="Position2D" parent="MateStuff"]
+position = Vector2( 42, 315 )
+
+[node name="BarricadeStuff" type="Node" parent="."]
+
+[node name="BarricadeOne" parent="BarricadeStuff" instance=ExtResource( 3 )]
+position = Vector2( 42, 365 )
+scale = Vector2( 2, 2 )
+
+[node name="BarricadeTwo" parent="BarricadeStuff" instance=ExtResource( 3 )]
+position = Vector2( 358, 365 )
+scale = Vector2( 2, 2 )
+
+[node name="BarricadeThree" parent="BarricadeStuff" instance=ExtResource( 3 )]
+position = Vector2( 358, 280 )
+scale = Vector2( 2, 2 )
+
+[node name="BarricadeFour" parent="BarricadeStuff" instance=ExtResource( 3 )]
+position = Vector2( 170, 500 )
+scale = Vector2( 2, 2 )
+
+[node name="BarricadeFive" parent="BarricadeStuff" instance=ExtResource( 3 )]
+position = Vector2( 230, 500 )
+scale = Vector2( 2, 2 )
+
+[node name="BarricadeSix" parent="BarricadeStuff" instance=ExtResource( 3 )]
+position = Vector2( 42, 280 )
+scale = Vector2( 2, 2 )
+
+[node name="ResourcesStuff" type="Node" parent="."]
+
+[node name="WaterResource" parent="ResourcesStuff" instance=ExtResource( 5 )]
+position = Vector2( 155, 525 )
+scale = Vector2( 4, 4 )
+
+[node name="BandageResource" parent="ResourcesStuff" instance=ExtResource( 6 )]
+position = Vector2( 200, 525 )
+scale = Vector2( 4, 4 )
+
+[node name="KevlarResource" parent="ResourcesStuff" instance=ExtResource( 7 )]
+position = Vector2( 245, 525 )
+scale = Vector2( 4, 4 )

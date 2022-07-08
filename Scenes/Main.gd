@@ -27,7 +27,11 @@ func instanciate_mates():
 	
 	var mate_three = mate_scene.instance()
 	mate_three.position = $MateStuff/ThirdStartPosition.position
+
+	var mate_four = mate_scene.instance()
+	mate_four.position = $MateStuff/FourthStartPosition.position
 	
 	add_child(mate_one)
 	add_child(mate_two)
 	add_child(mate_three)
+	add_child(mate_four)
