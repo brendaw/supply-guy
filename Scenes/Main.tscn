@@ -63,13 +63,20 @@ scale = Vector2( 2, 2 )
 [node name="ResourcesStuff" type="Node" parent="."]
 
 [node name="WaterResource" parent="ResourcesStuff" instance=ExtResource( 5 )]
-position = Vector2( 155, 525 )
+position = Vector2( 155, 580 )
 scale = Vector2( 4, 4 )
 
 [node name="BandageResource" parent="ResourcesStuff" instance=ExtResource( 6 )]
-position = Vector2( 200, 525 )
+position = Vector2( 200, 580 )
 scale = Vector2( 4, 4 )
 
 [node name="KevlarResource" parent="ResourcesStuff" instance=ExtResource( 7 )]
-position = Vector2( 245, 525 )
+position = Vector2( 245, 580 )
 scale = Vector2( 4, 4 )
+
+[connection signal="entered_water_refill" from="ResourcesStuff/WaterResource" to="PlayerStuff/Player" method="_on_entered_water_refill"]
+[connection signal="exited_water_refill" from="ResourcesStuff/WaterResource" to="PlayerStuff/Player" method="_on_WaterResource_exited_water_refill"]
+[connection signal="entered_bandage_refill" from="ResourcesStuff/BandageResource" to="PlayerStuff/Player" method="_on_BandageResource_entered_bandage_refill"]
+[connection signal="exited_bandage_refill" from="ResourcesStuff/BandageResource" to="PlayerStuff/Player" method="_on_BandageResource_exited_bandage_refill"]
+[connection signal="entered_kevlar_refill" from="ResourcesStuff/KevlarResource" to="PlayerStuff/Player" method="_on_KevlarResource_entered_kevlar_refill"]
+[connection signal="exited_kevlar_refill" from="ResourcesStuff/KevlarResource" to="PlayerStuff/Player" method="_on_KevlarResource_exited_kevlar_refill"]

@@ -8,5 +8,10 @@ signal hit
 
 func _ready():
 	$CollisionShape2D.disabled = false
-	pass
+	
+	$AnimatedSprite.play()
+	
+	update_animation("kevlar")
 
+func update_animation(animation):
+	$AnimatedSprite.animation = animation
