@@ -1,17 +1,30 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://Assets/Mate.png" type="Texture" id=1]
+[ext_resource path="res://Assets/Mate_Needed_Of_Bandage.png" type="Texture" id=2]
+[ext_resource path="res://Assets/Mate_Needed_Of_Water.png" type="Texture" id=3]
+[ext_resource path="res://Assets/Mate_Needed_Of_Kevlar.png" type="Texture" id=4]
 
 [sub_resource type="SpriteFrames" id=1]
 animations = [ {
-"frames": [ ExtResource( 1 ) ],
+"frames": [ ExtResource( 3 ) ],
 "loop": true,
-"name": "idle",
+"name": "water",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 2 ) ],
+"loop": true,
+"name": "bandage",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 4 ) ],
+"loop": true,
+"name": "kevlar",
 "speed": 5.0
 }, {
 "frames": [ ExtResource( 1 ) ],
 "loop": true,
-"name": "walk",
+"name": "default",
 "speed": 5.0
 } ]
 
@@ -23,7 +36,7 @@ extents = Vector2( 15, 20 )
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
 scale = Vector2( 2, 2 )
 frames = SubResource( 1 )
-animation = "walk"
+animation = "water"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource( 2 )
