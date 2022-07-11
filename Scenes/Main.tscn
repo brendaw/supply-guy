@@ -25,16 +25,16 @@ position = Vector2( 200, 450 )
 [node name="Mate" parent="MateStuff" instance=ExtResource( 2 )]
 
 [node name="FirstStartPosition" type="Position2D" parent="MateStuff"]
-position = Vector2( 42, 400 )
+position = Vector2( 42, 405 )
 
 [node name="SecondStartPosition" type="Position2D" parent="MateStuff"]
-position = Vector2( 358, 400 )
+position = Vector2( 358, 405 )
 
 [node name="ThirdStartPosition" type="Position2D" parent="MateStuff"]
-position = Vector2( 358, 315 )
+position = Vector2( 358, 320 )
 
 [node name="FourthStartPosition" type="Position2D" parent="MateStuff"]
-position = Vector2( 42, 315 )
+position = Vector2( 42, 320 )
 
 [node name="BarricadeStuff" type="Node" parent="."]
 

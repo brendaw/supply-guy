@@ -4,6 +4,8 @@ export var speed = 200
 
 enum { WATER_RESOURCE, BANDAGE_RESOURCE, KEVLAR_RESOURCE } 
 
+var on_resource_need = false
+
 var need_water_resource = false
 var need_bandage_resource = false
 var need_kevlar_resource = false
@@ -11,13 +13,25 @@ var need_kevlar_resource = false
 var choosed_resource_index
 var last_choosed_resource_index
 
+var health_pace = 0
+var health = 100
+
 var screen_size
 
 func _ready():
+	randomize()
+	
 	$CollisionShape2D.disabled = false
+	
 	$AnimatedSprite.play()
 	update_animation("empty")
+	
 	choose_some_resource_in_need()
+	choose_health_pace()
+	
+	health = 100
+	
+	$HealthTimer.start()
 
 func disable():
 	$CollisionShape2D.disabled = true
@@ -48,23 +62,39 @@ func choose_some_resource_in_need():
 			$AnimatedSprite.animation = "kevlar"
 	
 	last_choosed_resource_index = choosed_resource_index
-	$HealthTimer.start()
+	
+	on_resource_need = true
 
 func reset_resources():
+	on_resource_need = false
+	
 	need_water_resource = false
 	need_bandage_resource = false
 	need_kevlar_resource = false
+	
+	$AnimatedSprite.animation = "empty"
 
 func reset_current_resource():
+	$HealthTimer.stop()
+	
 	reset_resources()
-	$AnimatedSprite.animation = "empty"
+	
+	health = 100
+	
+	$HealthDisplay.update_health_bar(health)
+	
 	$RefillTimer.start()
+
+func choose_health_pace():
+	health_pace = (randi() % 5) * 2
+	
+	if health_pace == 0:
+		health_pace = 5
 
 func _on_MateRefillZone_body_entered(body):
 	if body != self:
 		print(body.name)
 		body._on_entered_mate_refill_zone(self)
-
 
 func _on_MateRefillZone_body_exited(body):
 	if body != self:
@@ -72,12 +102,26 @@ func _on_MateRefillZone_body_exited(body):
 		body._on_exited_mate_refill_zone()
 
 func _on_RefillTimer_timeout():
-	choose_some_resource_in_need()
 	$RefillTimer.stop()
-
-func _on_ResourceTimer_timeout():
-	pass # Replace with function body.
-
+	
+	choose_some_resource_in_need()
+	choose_health_pace()
+	
+	$HealthTimer.start()
 
 func _on_HealthTimer_timeout():
-	print("Health counter")
+	if (on_resource_need):
+		health -= health_pace
+		
+		if (health <= 0):
+			print("It's over, mate")
+			
+			reset_resources()
+			
+			$HealthTimer.stop()
+			
+		
+		$HealthDisplay.update_health_bar(health)
+		
+		
+	

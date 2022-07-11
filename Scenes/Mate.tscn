@@ -1,10 +1,12 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://Assets/Mate.png" type="Texture" id=1]
 [ext_resource path="res://Assets/Mate_Needed_Of_Bandage.png" type="Texture" id=2]
 [ext_resource path="res://Assets/Mate_Needed_Of_Water.png" type="Texture" id=3]
 [ext_resource path="res://Assets/Mate_Needed_Of_Kevlar.png" type="Texture" id=4]
 [ext_resource path="res://Scenes/Mate.gd" type="Script" id=5]
+[ext_resource path="res://Assets/High_Health.png" type="Texture" id=6]
+[ext_resource path="res://Scenes/MateHealthDisplay.gd" type="Script" id=7]
 
 [sub_resource type="SpriteFrames" id=1]
 animations = [ {
@@ -54,12 +56,21 @@ shape = SubResource( 3 )
 [node name="RefillTimer" type="Timer" parent="."]
 wait_time = 3.0
 
-[node name="ResourceTimer" type="Timer" parent="."]
-
 [node name="HealthTimer" type="Timer" parent="."]
+
+[node name="HealthDisplay" type="Node2D" parent="."]
+script = ExtResource( 7 )
+
+[node name="HealthBar" type="TextureProgress" parent="HealthDisplay"]
+margin_left = -19.0
+margin_top = -30.0
+margin_right = -8.0
+margin_bottom = -27.0
+rect_scale = Vector2( 3.5, 3 )
+value = 100.0
+texture_progress = ExtResource( 6 )
 
 [connection signal="body_entered" from="MateRefillZone" to="." method="_on_MateRefillZone_body_entered"]
 [connection signal="body_exited" from="MateRefillZone" to="." method="_on_MateRefillZone_body_exited"]
 [connection signal="timeout" from="RefillTimer" to="." method="_on_RefillTimer_timeout"]
-[connection signal="timeout" from="ResourceTimer" to="." method="_on_ResourceTimer_timeout"]
 [connection signal="timeout" from="HealthTimer" to="." method="_on_HealthTimer_timeout"]
