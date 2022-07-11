@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://Assets/Mate.png" type="Texture" id=1]
 [ext_resource path="res://Assets/Mate_Needed_Of_Bandage.png" type="Texture" id=2]
@@ -32,6 +32,9 @@ animations = [ {
 [sub_resource type="RectangleShape2D" id=2]
 extents = Vector2( 15, 20 )
 
+[sub_resource type="RectangleShape2D" id=3]
+extents = Vector2( 19, 24 )
+
 [node name="Mate" type="KinematicBody2D"]
 script = ExtResource( 5 )
 
@@ -42,3 +45,21 @@ animation = "empty"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource( 2 )
+
+[node name="MateRefillZone" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="MateRefillZone"]
+shape = SubResource( 3 )
+
+[node name="RefillTimer" type="Timer" parent="."]
+wait_time = 3.0
+
+[node name="ResourceTimer" type="Timer" parent="."]
+
+[node name="HealthTimer" type="Timer" parent="."]
+
+[connection signal="body_entered" from="MateRefillZone" to="." method="_on_MateRefillZone_body_entered"]
+[connection signal="body_exited" from="MateRefillZone" to="." method="_on_MateRefillZone_body_exited"]
+[connection signal="timeout" from="RefillTimer" to="." method="_on_RefillTimer_timeout"]
+[connection signal="timeout" from="ResourceTimer" to="." method="_on_ResourceTimer_timeout"]
+[connection signal="timeout" from="HealthTimer" to="." method="_on_HealthTimer_timeout"]

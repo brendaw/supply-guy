@@ -15,6 +15,8 @@ var on_water_refill_zone = false
 var on_bandage_refill_zone = false
 var on_kevlar_refill_zone = false
 
+var near_mate = null
+
 var screen_size
 
 func start(pos):
@@ -69,6 +71,20 @@ func get_input():
 			has_bandage_resource = false
 			has_water_resource = false
 			update_animation("kevlar")
+		
+		if (near_mate != null):
+			if (has_water_resource && near_mate.need_water_resource):
+				has_water_resource = false
+				$AnimatedSprite.animation = "empty"
+				near_mate.reset_current_resource()
+			elif (has_bandage_resource && near_mate.need_bandage_resource):
+				has_bandage_resource = false
+				$AnimatedSprite.animation = "empty"
+				near_mate.reset_current_resource()
+			elif (has_kevlar_resource && near_mate.need_kevlar_resource):
+				has_kevlar_resource = false
+				$AnimatedSprite.animation = "empty"
+				near_mate.reset_current_resource()
 	
 	velocity = velocity.normalized() * speed
 
@@ -87,7 +103,6 @@ func update_animation(animation):
 func clear_velocity():
 	velocity = Vector2.ZERO
 
-
 func _on_entered_water_refill():
 	print("entered water refill")
 	on_water_refill_zone = true
@@ -97,7 +112,6 @@ func _on_entered_water_refill():
 func _on_WaterResource_exited_water_refill():
 	print("exited water refill")
 	on_water_refill_zone = false
-
 
 func _on_BandageResource_entered_bandage_refill():
 	print("entered bandage refill")
@@ -118,3 +132,14 @@ func _on_KevlarResource_entered_kevlar_refill():
 func _on_KevlarResource_exited_kevlar_refill():
 	print("exited kevlar refill")
 	on_kevlar_refill_zone  = false
+
+func _on_entered_mate_refill_zone(mate):
+	print("entered near mate refill zone")
+	print(mate)
+	near_mate = mate
+
+func _on_exited_mate_refill_zone():
+	print("exited near mate refill zone")
+	print(near_mate)
+	near_mate = null
+	print(near_mate)

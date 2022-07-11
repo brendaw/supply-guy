@@ -19,16 +19,16 @@ func instanciate_player():
 	$PlayerStuff/Player.start($PlayerStuff/StartPosition.position)
 
 func instanciate_mates():
+	$MateStuff/Mate.disable()
+	
 	var mate_one = mate_scene.instance()
-	mate_one.position = $MateStuff/FirstStartPosition.position
-	
 	var mate_two = mate_scene.instance()
-	mate_two.position = $MateStuff/SecondStartPosition.position
-	
 	var mate_three = mate_scene.instance()
-	mate_three.position = $MateStuff/ThirdStartPosition.position
-
 	var mate_four = mate_scene.instance()
+	
+	mate_one.position = $MateStuff/FirstStartPosition.position
+	mate_two.position = $MateStuff/SecondStartPosition.position
+	mate_three.position = $MateStuff/ThirdStartPosition.position
 	mate_four.position = $MateStuff/FourthStartPosition.position
 	
 	add_child(mate_one)
