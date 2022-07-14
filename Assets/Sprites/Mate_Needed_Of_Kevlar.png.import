@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/Barricade.png-96743accd44fc4e13f4df1e1b3252aa4.stex"
+path="res://.import/Mate_Needed_Of_Kevlar.png-0526a3a6b59cda2bc8da4f037f69eb80.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Barricade.png"
-dest_files=[ "res://.import/Barricade.png-96743accd44fc4e13f4df1e1b3252aa4.stex" ]
+source_file="res://Assets/Sprites/Mate_Needed_Of_Kevlar.png"
+dest_files=[ "res://.import/Mate_Needed_Of_Kevlar.png-0526a3a6b59cda2bc8da4f037f69eb80.stex" ]
 
 [params]
 

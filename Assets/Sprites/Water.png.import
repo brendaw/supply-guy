@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/Kevlar.png-03966cb1a7cc4138c45a36c78cd05e03.stex"
+path="res://.import/Water.png-62a0fa15c1e917eb5ce77e642aeed103.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Kevlar.png"
-dest_files=[ "res://.import/Kevlar.png-03966cb1a7cc4138c45a36c78cd05e03.stex" ]
+source_file="res://Assets/Sprites/Water.png"
+dest_files=[ "res://.import/Water.png-62a0fa15c1e917eb5ce77e642aeed103.stex" ]
 
 [params]
 

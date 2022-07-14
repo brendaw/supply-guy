@@ -1,8 +1,8 @@
 extends Node2D
 
-var low_bar = preload("res://Assets/Low_Health.png")
-var medium_bar = preload("res://Assets/Medium_Health.png")
-var high_bar = preload("res://Assets/High_Health.png")
+var low_bar = preload("res://Assets/Sprites/Low_Health.png")
+var medium_bar = preload("res://Assets/Sprites/Medium_Health.png")
+var high_bar = preload("res://Assets/Sprites/High_Health.png")
 
 onready var health_bar = $HealthBar
 

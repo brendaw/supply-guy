@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/Medium_Health.png-17608916688ce1df42ebcb1fa054aa3e.stex"
+path="res://.import/Barricade.png-893af4f1191439be8a5ca7ab1f4f4fde.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Medium_Health.png"
-dest_files=[ "res://.import/Medium_Health.png-17608916688ce1df42ebcb1fa054aa3e.stex" ]
+source_file="res://Assets/Sprites/Barricade.png"
+dest_files=[ "res://.import/Barricade.png-893af4f1191439be8a5ca7ab1f4f4fde.stex" ]
 
 [params]
 

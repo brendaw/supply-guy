@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/Player_With_Water.png-c4c89455e076a2c70aabce7bebd45d73.stex"
+path="res://.import/Medium_Health.png-f96a9df631a22143e0541495f968a7fc.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Player_With_Water.png"
-dest_files=[ "res://.import/Player_With_Water.png-c4c89455e076a2c70aabce7bebd45d73.stex" ]
+source_file="res://Assets/Sprites/Medium_Health.png"
+dest_files=[ "res://.import/Medium_Health.png-f96a9df631a22143e0541495f968a7fc.stex" ]
 
 [params]
 

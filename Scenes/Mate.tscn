@@ -1,11 +1,11 @@
 [gd_scene load_steps=11 format=2]
 
-[ext_resource path="res://Assets/Mate.png" type="Texture" id=1]
-[ext_resource path="res://Assets/Mate_Needed_Of_Bandage.png" type="Texture" id=2]
-[ext_resource path="res://Assets/Mate_Needed_Of_Water.png" type="Texture" id=3]
-[ext_resource path="res://Assets/Mate_Needed_Of_Kevlar.png" type="Texture" id=4]
+[ext_resource path="res://Assets/Sprites/Mate.png" type="Texture" id=1]
+[ext_resource path="res://Assets/Sprites/Mate_Needed_Of_Bandage.png" type="Texture" id=2]
+[ext_resource path="res://Assets/Sprites/Mate_Needed_Of_Water.png" type="Texture" id=3]
+[ext_resource path="res://Assets/Sprites/Mate_Needed_Of_Kevlar.png" type="Texture" id=4]
 [ext_resource path="res://Scenes/Mate.gd" type="Script" id=5]
-[ext_resource path="res://Assets/High_Health.png" type="Texture" id=6]
+[ext_resource path="res://Assets/Sprites/High_Health.png" type="Texture" id=6]
 [ext_resource path="res://Scenes/MateHealthDisplay.gd" type="Script" id=7]
 
 [sub_resource type="SpriteFrames" id=1]

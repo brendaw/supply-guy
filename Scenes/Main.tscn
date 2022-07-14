@@ -18,63 +18,72 @@ barricade_scene = ExtResource( 3 )
 [node name="Player" parent="PlayerStuff" instance=ExtResource( 4 )]
 
 [node name="StartPosition" type="Position2D" parent="PlayerStuff"]
-position = Vector2( 200, 450 )
+position = Vector2( 200, 245 )
 
 [node name="MateStuff" type="Node" parent="."]
 
 [node name="Mate" parent="MateStuff" instance=ExtResource( 2 )]
 
 [node name="FirstStartPosition" type="Position2D" parent="MateStuff"]
-position = Vector2( 42, 405 )
+position = Vector2( 42, 200 )
 
 [node name="SecondStartPosition" type="Position2D" parent="MateStuff"]
-position = Vector2( 358, 405 )
+position = Vector2( 358, 200 )
 
 [node name="ThirdStartPosition" type="Position2D" parent="MateStuff"]
-position = Vector2( 358, 320 )
+position = Vector2( 358, 115 )
 
 [node name="FourthStartPosition" type="Position2D" parent="MateStuff"]
-position = Vector2( 42, 320 )
+position = Vector2( 42, 115 )
 
 [node name="BarricadeStuff" type="Node" parent="."]
 
 [node name="BarricadeOne" parent="BarricadeStuff" instance=ExtResource( 3 )]
-position = Vector2( 42, 365 )
+position = Vector2( 42, 160 )
 scale = Vector2( 2, 2 )
 
 [node name="BarricadeTwo" parent="BarricadeStuff" instance=ExtResource( 3 )]
-position = Vector2( 358, 365 )
+position = Vector2( 358, 160 )
 scale = Vector2( 2, 2 )
 
 [node name="BarricadeThree" parent="BarricadeStuff" instance=ExtResource( 3 )]
-position = Vector2( 358, 280 )
+position = Vector2( 358, 75 )
 scale = Vector2( 2, 2 )
 
 [node name="BarricadeFour" parent="BarricadeStuff" instance=ExtResource( 3 )]
-position = Vector2( 170, 500 )
+position = Vector2( 170, 295 )
 scale = Vector2( 2, 2 )
 
 [node name="BarricadeFive" parent="BarricadeStuff" instance=ExtResource( 3 )]
-position = Vector2( 230, 500 )
+position = Vector2( 230, 295 )
 scale = Vector2( 2, 2 )
 
 [node name="BarricadeSix" parent="BarricadeStuff" instance=ExtResource( 3 )]
-position = Vector2( 42, 280 )
+position = Vector2( 42, 75 )
 scale = Vector2( 2, 2 )
 
 [node name="ResourcesStuff" type="Node" parent="."]
 
 [node name="WaterResource" parent="ResourcesStuff" instance=ExtResource( 5 )]
-position = Vector2( 155, 580 )
+position = Vector2( 155, 375 )
 scale = Vector2( 4, 4 )
 
 [node name="BandageResource" parent="ResourcesStuff" instance=ExtResource( 6 )]
-position = Vector2( 200, 580 )
+position = Vector2( 200, 375 )
 scale = Vector2( 4, 4 )
 
 [node name="KevlarResource" parent="ResourcesStuff" instance=ExtResource( 7 )]
-position = Vector2( 245, 580 )
+position = Vector2( 245, 375 )
 scale = Vector2( 4, 4 )
+
+[node name="HUD" type="Node" parent="."]
+
+[node name="Label" type="Label" parent="HUD"]
+margin_left = 200.0
+margin_top = 7.0
+margin_right = 390.0
+margin_bottom = 33.0
+text = "Score: 0"
 
 [connection signal="entered_water_refill" from="ResourcesStuff/WaterResource" to="PlayerStuff/Player" method="_on_entered_water_refill"]
 [connection signal="exited_water_refill" from="ResourcesStuff/WaterResource" to="PlayerStuff/Player" method="_on_WaterResource_exited_water_refill"]

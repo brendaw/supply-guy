@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/Mate.png-bea519ed5d9e5523a1e18d28c07aea87.stex"
+path="res://.import/Player_With_Water.png-32575f17f98a059ae363e7775ed18eef.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Mate.png"
-dest_files=[ "res://.import/Mate.png-bea519ed5d9e5523a1e18d28c07aea87.stex" ]
+source_file="res://Assets/Sprites/Player_With_Water.png"
+dest_files=[ "res://.import/Player_With_Water.png-32575f17f98a059ae363e7775ed18eef.stex" ]
 
 [params]
 

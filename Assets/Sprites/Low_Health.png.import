@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/Mate_Needed_Of_Kevlar.png-72131c06138678758e17eb472bca1942.stex"
+path="res://.import/Low_Health.png-0c428e179154c6daaa95d5e6422b771b.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Mate_Needed_Of_Kevlar.png"
-dest_files=[ "res://.import/Mate_Needed_Of_Kevlar.png-72131c06138678758e17eb472bca1942.stex" ]
+source_file="res://Assets/Sprites/Low_Health.png"
+dest_files=[ "res://.import/Low_Health.png-0c428e179154c6daaa95d5e6422b771b.stex" ]
 
 [params]
 

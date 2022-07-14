@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/Player.png-54d4b13ac506f96b99814af866f299ae.stex"
+path="res://.import/Bandage.png-8bb55c73f0c8e381584036747e51635f.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Player.png"
-dest_files=[ "res://.import/Player.png-54d4b13ac506f96b99814af866f299ae.stex" ]
+source_file="res://Assets/Sprites/Bandage.png"
+dest_files=[ "res://.import/Bandage.png-8bb55c73f0c8e381584036747e51635f.stex" ]
 
 [params]
 

@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/Player_With_Bandage.png-a917391e5059d2c849ab773e39af2c1f.stex"
+path="res://.import/Kevlar.png-40364176bae884afbfff9d2b5cffa350.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Player_With_Bandage.png"
-dest_files=[ "res://.import/Player_With_Bandage.png-a917391e5059d2c849ab773e39af2c1f.stex" ]
+source_file="res://Assets/Sprites/Kevlar.png"
+dest_files=[ "res://.import/Kevlar.png-40364176bae884afbfff9d2b5cffa350.stex" ]
 
 [params]
 

@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/Water.png-b2e18ca3bc1ee31d8f0e6ddd4a76a170.stex"
+path="res://.import/Mate_Needed_Of_Bandage.png-6fa5da850f5bae4689ea63023d3840a7.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Water.png"
-dest_files=[ "res://.import/Water.png-b2e18ca3bc1ee31d8f0e6ddd4a76a170.stex" ]
+source_file="res://Assets/Sprites/Mate_Needed_Of_Bandage.png"
+dest_files=[ "res://.import/Mate_Needed_Of_Bandage.png-6fa5da850f5bae4689ea63023d3840a7.stex" ]
 
 [params]
 
