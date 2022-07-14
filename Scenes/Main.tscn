@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://Scenes/Main.gd" type="Script" id=1]
 [ext_resource path="res://Scenes/Mate.tscn" type="PackedScene" id=2]
@@ -7,6 +7,8 @@
 [ext_resource path="res://Scenes/WaterResource.tscn" type="PackedScene" id=5]
 [ext_resource path="res://Scenes/BandageResource.tscn" type="PackedScene" id=6]
 [ext_resource path="res://Scenes/KevlarResource.tscn" type="PackedScene" id=7]
+[ext_resource path="res://Assets/Fonts/VP Pixel.tres" type="DynamicFont" id=8]
+[ext_resource path="res://Scenes/ScoreCounter.gd" type="Script" id=9]
 
 [node name="Main" type="Node"]
 script = ExtResource( 1 )
@@ -78,13 +80,17 @@ scale = Vector2( 4, 4 )
 
 [node name="HUD" type="Node" parent="."]
 
-[node name="Label" type="Label" parent="HUD"]
-margin_left = 200.0
-margin_top = 7.0
-margin_right = 390.0
-margin_bottom = 33.0
-text = "Score: 0"
+[node name="ScoreCounter" type="Label" parent="HUD"]
+margin_left = 10.0
+margin_top = 10.0
+margin_right = 315.0
+margin_bottom = 39.0
+rect_scale = Vector2( 1.25, 1.25 )
+custom_fonts/font = ExtResource( 8 )
+text = "Score: 0000000"
+script = ExtResource( 9 )
 
+[connection signal="update_score" from="PlayerStuff/Player" to="." method="_on_Player_update_score"]
 [connection signal="entered_water_refill" from="ResourcesStuff/WaterResource" to="PlayerStuff/Player" method="_on_entered_water_refill"]
 [connection signal="exited_water_refill" from="ResourcesStuff/WaterResource" to="PlayerStuff/Player" method="_on_WaterResource_exited_water_refill"]
 [connection signal="entered_bandage_refill" from="ResourcesStuff/BandageResource" to="PlayerStuff/Player" method="_on_BandageResource_entered_bandage_refill"]

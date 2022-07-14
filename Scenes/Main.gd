@@ -35,3 +35,9 @@ func instanciate_mates():
 	add_child(mate_two)
 	add_child(mate_three)
 	add_child(mate_four)
+
+
+
+
+func _on_Player_update_score(score):
+	$HUD/ScoreCounter.update_score(score)

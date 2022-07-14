@@ -1,5 +1,9 @@
 extends KinematicBody2D
 
+signal update_score(score)
+
+export var score = 0
+
 export var speed = 150
 
 var velocity = Vector2.ZERO
@@ -76,14 +80,17 @@ func get_input():
 			if (has_water_resource && near_mate.need_water_resource):
 				has_water_resource = false
 				$AnimatedSprite.animation = "empty"
+				update_score()
 				near_mate.reset_current_resource()
 			elif (has_bandage_resource && near_mate.need_bandage_resource):
 				has_bandage_resource = false
 				$AnimatedSprite.animation = "empty"
+				update_score()
 				near_mate.reset_current_resource()
 			elif (has_kevlar_resource && near_mate.need_kevlar_resource):
 				has_kevlar_resource = false
 				$AnimatedSprite.animation = "empty"
+				update_score()
 				near_mate.reset_current_resource()
 	
 	velocity = velocity.normalized() * speed
@@ -102,6 +109,11 @@ func update_animation(animation):
 
 func clear_velocity():
 	velocity = Vector2.ZERO
+	
+func update_score():
+	score += near_mate.health * near_mate.health_pace
+	
+	emit_signal("update_score", score)
 
 func _on_entered_water_refill():
 	print("entered water refill")
