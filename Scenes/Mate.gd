@@ -82,12 +82,15 @@ func reset_resources():
 
 func reset_current_resource():
 	$HealthTimer.stop()
+	$HealthDisplay.hide()
 	
 	reset_resources()
 	
 	health = 100
-	
 	$HealthDisplay.update_health_bar(health)
+	
+	$AnimatedSprite.animation = "empty"
+	$AnimatedSprite.play()
 	
 	$RefillTimer.start()
 
@@ -114,8 +117,12 @@ func _on_MateRefillZone_body_exited(body):
 func _on_RefillTimer_timeout():
 	$RefillTimer.stop()
 	
+	$AnimatedSprite.stop()
+	
 	choose_some_resource_in_need()
 	choose_health_pace()
+	
+	$HealthDisplay.show()
 	
 	$HealthTimer.start()
 
