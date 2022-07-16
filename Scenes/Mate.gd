@@ -1,6 +1,6 @@
 extends KinematicBody2D
 
-export var speed = 200
+signal mate_died
 
 enum { WATER_RESOURCE, BANDAGE_RESOURCE, KEVLAR_RESOURCE } 
 
@@ -117,6 +117,10 @@ func _on_HealthTimer_timeout():
 			print("It's over, mate")
 			
 			reset_resources()
+			
+			$AnimatedSprite.animation = "dead"
+			
+			emit_signal("mate_died")
 			
 			$HealthTimer.stop()
 			

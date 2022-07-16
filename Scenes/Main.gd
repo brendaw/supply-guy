@@ -31,6 +31,11 @@ func instanciate_mates():
 	mate_three.position = $MateStuff/ThirdStartPosition.position
 	mate_four.position = $MateStuff/FourthStartPosition.position
 	
+	mate_one.connect("mate_died", self, "_on_Mate_mate_died")
+	mate_two.connect("mate_died", self, "_on_Mate_mate_died")
+	mate_three.connect("mate_died", self, "_on_Mate_mate_died")
+	mate_four.connect("mate_died", self, "_on_Mate_mate_died")
+	
 	add_child(mate_one)
 	add_child(mate_two)
 	add_child(mate_three)
@@ -41,3 +46,9 @@ func instanciate_mates():
 
 func _on_Player_update_score(score):
 	$HUD/ScoreCounter.update_score(score)
+
+
+func _on_Mate_mate_died():
+	print("Mate died :/")
+	
+	$PlayerStuff/Player.slow_player_after_mate_dead()
