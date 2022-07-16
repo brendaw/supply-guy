@@ -18,6 +18,8 @@ barricade_scene = ExtResource( 3 )
 [node name="PlayerStuff" type="Node" parent="."]
 
 [node name="Player" parent="PlayerStuff" instance=ExtResource( 4 )]
+score = 0
+speed = 150
 
 [node name="StartPosition" type="Position2D" parent="PlayerStuff"]
 position = Vector2( 200, 245 )

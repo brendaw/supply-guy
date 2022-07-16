@@ -2,6 +2,10 @@ extends KinematicBody2D
 
 signal update_score(score)
 
+signal caught_water
+signal caught_bandage
+signal caught_kevlar
+
 export var score = 0
 
 export var speed = 150
@@ -21,6 +25,7 @@ var near_mate = null
 var screen_size
 
 var dead_penalty_counter = 0
+var delivery_reward_counter = 0
 
 func start(pos):
 	position = pos
@@ -64,16 +69,21 @@ func get_input():
 			has_bandage_resource = false
 			has_kevlar_resource = false
 			update_animation("water")
+			emit_signal("caught_water")
+		
 		elif on_bandage_refill_zone:
 			has_bandage_resource = true
 			has_water_resource = false
 			has_kevlar_resource = false
 			update_animation("bandage")
+			emit_signal("caught_bandage")
+		
 		elif on_kevlar_refill_zone:
 			has_kevlar_resource = true
 			has_bandage_resource = false
 			has_water_resource = false
 			update_animation("kevlar")
+			emit_signal("caught_kevlar")
 		
 		if (near_mate != null):
 			if (has_water_resource && near_mate.need_water_resource):
@@ -81,16 +91,21 @@ func get_input():
 				$AnimatedSprite.animation = "empty"
 				update_score()
 				near_mate.reset_current_resource()
+				delivery_reward()
+			
 			elif (has_bandage_resource && near_mate.need_bandage_resource):
 				has_bandage_resource = false
 				$AnimatedSprite.animation = "empty"
 				update_score()
 				near_mate.reset_current_resource()
+				delivery_reward()
+			
 			elif (has_kevlar_resource && near_mate.need_kevlar_resource):
 				has_kevlar_resource = false
 				$AnimatedSprite.animation = "empty"
 				update_score()
 				near_mate.reset_current_resource()
+				delivery_reward()
 	
 	velocity = velocity.normalized() * speed
 
@@ -116,15 +131,38 @@ func update_score():
 
 
 func slow_player_after_mate_dead():
+	$RewardTimer.stop()
+	
 	dead_penalty_counter = dead_penalty_counter + 6
 	
 	speed = 100
 	
+	$AnimatedSprite.modulate = Color(0.5,0,0)
 	$AnimatedSprite.modulate.a = 0.5
 	
 	if ($DeadTimer.is_stopped()):
 		$DeadTimer.start()
 
+func delivery_reward():
+	if (dead_penalty_counter > 0):
+		$DeadTimer.stop()
+		
+		dead_penalty_counter = 0
+		
+		$AnimatedSprite.modulate = Color(1,1,1)
+		$AnimatedSprite.modulate.a = 1
+		speed = 150
+	
+	else:
+		delivery_reward_counter = 6
+		
+		speed = 200
+		
+		$AnimatedSprite.modulate = Color(0,0.5,0)
+		$AnimatedSprite.modulate.a = 0.5
+		
+		if ($RewardTimer.is_stopped()):
+			$RewardTimer.start()
 
 func _on_entered_water_refill():
 	print("entered water refill")
@@ -176,13 +214,10 @@ func _on_exited_mate_refill_zone():
 
 
 func _on_DeadTimer_timeout():
-	print("--")
-	print(dead_penalty_counter)
-	print(speed)
-	
 	if dead_penalty_counter == 0:
 		$DeadTimer.stop()
 		speed = 125
+		$AnimatedSprite.modulate = Color(1,1,1)
 		$AnimatedSprite.modulate.a = 1
 	else:
 		dead_penalty_counter = dead_penalty_counter - 1
@@ -191,6 +226,18 @@ func _on_DeadTimer_timeout():
 			$AnimatedSprite.modulate.a = 1
 		else:
 			$AnimatedSprite.modulate.a = 0.5
-	
-	print(dead_penalty_counter)
-	print(speed)
+
+
+func _on_RewardTimer_timeout():
+	if delivery_reward_counter == 0:
+		$RewardTimer.stop()
+		speed = 125
+		$AnimatedSprite.modulate = Color(1,1,1)
+		$AnimatedSprite.modulate.a = 1
+	else:
+		delivery_reward_counter = delivery_reward_counter - 1
+		
+		if $AnimatedSprite.modulate.a == 0.5:
+			$AnimatedSprite.modulate.a = 1
+		else:
+			$AnimatedSprite.modulate.a = 0.5

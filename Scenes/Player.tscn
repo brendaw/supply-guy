@@ -45,4 +45,8 @@ shape = SubResource( 2 )
 
 [node name="DeadTimer" type="Timer" parent="."]
 
+[node name="RewardTimer" type="Timer" parent="."]
+wait_time = 0.5
+
 [connection signal="timeout" from="DeadTimer" to="." method="_on_DeadTimer_timeout"]
+[connection signal="timeout" from="RewardTimer" to="." method="_on_RewardTimer_timeout"]
