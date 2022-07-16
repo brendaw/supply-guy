@@ -17,9 +17,13 @@ var mate_two
 var mate_three
 var mate_four
 
+var score = 0
+var high_score = 0
+
 func _ready():
 	randomize()
 	disable_assets()
+	show_intro()
 
 
 func _process(delta):
@@ -38,16 +42,28 @@ func disable_assets():
 	$MateStuff/Mate.disable()
 
 
+func show_intro():
+	$HUD/BeginHUD/SupplyGuyLabel.show()
+	$HUD/BeginHUD/CopyrightLabel.show()
+	
+	$HUD/PressEnterLabel.show()
+
+
 func new_game():
 	is_begin_screen = false
 	is_game_over = false
 	is_game_on = true
 	
 	$HUD/GameOverHUD/GameOverLabel.hide()
+	$HUD/GameOverHUD/CongratulationsLabel.hide()
 	
 	$HUD/GameOnHUD/ScoreCounter.hide()
 	$HUD/GameOnHUD/ScoreCounter.update_score(0)
 	
+	update_high_score()
+	
+	$HUD/GameOnHUD/HighScoreCounter.hide()
+	$HUD/GameOnHUD/HighScoreCounter.update_high_score(high_score)
 	
 	$HUD/BeginHUD/SupplyGuyLabel.hide()
 	$HUD/BeginHUD/CopyrightLabel.hide()
@@ -57,6 +73,13 @@ func new_game():
 	$HUD/CountdownLabel.text = "Get Ready!"
 	
 	$StartCountdown.start()
+
+
+func update_high_score():
+	if (score > high_score):
+		high_score = score
+	
+	score = 0
 
 
 func instanciate_player():
@@ -134,10 +157,12 @@ func hide_barricades_and_resources():
 
 func show_hud():
 	$HUD/GameOnHUD/ScoreCounter.show()
+	$HUD/GameOnHUD/HighScoreCounter.show()
 
 
 func hide_hud():
 	$HUD/GameOnHUD/ScoreCounter.hide()
+	$HUD/GameOnHUD/HighScoreCounter.hide()
 
 
 func game_over():
@@ -146,6 +171,12 @@ func game_over():
 	is_game_over = true
 	
 	$HUD/GameOverHUD/GameOverLabel.show()
+	
+	if (score > high_score):
+		$HUD/GameOverHUD/CongratulationsLabel.show()
+		
+		update_high_score()
+		$HUD/GameOnHUD/HighScoreCounter.update_high_score(high_score)
 	
 	$HUD/PressEnterLabel.text = "Press \"Enter\" to restart"
 	$HUD/PressEnterLabel.show()
@@ -157,6 +188,7 @@ func game_over():
 
 func _on_Player_update_score(score):
 	$HUD/GameOnHUD/ScoreCounter.update_score(score)
+	self.score = score
 
 
 func _on_Mate_mate_died():
@@ -164,15 +196,15 @@ func _on_Mate_mate_died():
 	
 	mates_dead_count = mates_dead_count + 1
 	
-	if (mates_dead_count == total_mates - 1):
+	if (mates_dead_count == total_mates / 2):
 		game_over()
 	
 	else:
 		if (not is_game_over):
-			mate_one.health_pace_difficulty_level = mates_dead_count + 1
-			mate_two.health_pace_difficulty_level = mates_dead_count + 1
-			mate_three.health_pace_difficulty_level = mates_dead_count + 1
-			mate_four.health_pace_difficulty_level = mates_dead_count + 1
+			#mate_one.health_pace_difficulty_level = mates_dead_count + 1
+			#mate_two.health_pace_difficulty_level = mates_dead_count + 1
+			#mate_three.health_pace_difficulty_level = mates_dead_count + 1
+			#mate_four.health_pace_difficulty_level = mates_dead_count + 1
 			
 			$PlayerStuff/Player.slow_player_after_mate_dead()
 
@@ -188,9 +220,7 @@ func _on_StartCountdown_timeout():
 		
 		$HUD/CountdownLabel.hide()
 		
-		print("countdown 5")
-		
-		start_countdown = 4
+		start_countdown = 5
 		
 		instanciate_player()
 		instanciate_mates()

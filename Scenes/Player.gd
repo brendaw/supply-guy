@@ -27,6 +27,7 @@ var screen_size
 var dead_penalty_counter = 0
 var delivery_reward_counter = 0
 
+
 func start(pos):
 	position = pos
 	show()
@@ -41,10 +42,12 @@ func start(pos):
 	$AnimatedSprite.modulate = Color(1,1,1)
 	$AnimatedSprite.modulate.a = 1
 
+
 func _ready():
 	screen_size = get_viewport_rect().size
 	hide()
-	
+
+
 func _physics_process(delta):
 	get_input()
 	animate_player()
@@ -53,8 +56,10 @@ func _physics_process(delta):
 	
 	clear_velocity()
 
+
 func key_pressed(key):
 	return Input.is_action_pressed(key)
+
 
 func get_input():
 	if key_pressed("move_right"):
@@ -115,6 +120,7 @@ func get_input():
 	
 	velocity = velocity.normalized() * speed
 
+
 func animate_player():
 	if velocity.length() > 0:
 		velocity = velocity.normalized() * speed
@@ -124,12 +130,15 @@ func animate_player():
 	else:
 		$AnimatedSprite.flip_h = false
 
+
 func update_animation(animation):
 	$AnimatedSprite.animation = animation
 
+
 func clear_velocity():
 	velocity = Vector2.ZERO
-	
+
+
 func update_score():
 	score += near_mate.health * near_mate.health_pace
 	
@@ -137,17 +146,18 @@ func update_score():
 
 
 func slow_player_after_mate_dead():
-	$RewardTimer.stop()
-	
-	dead_penalty_counter = dead_penalty_counter + 6
-	
-	speed = 100
-	
-	$AnimatedSprite.modulate = Color(0.5,0,0)
-	$AnimatedSprite.modulate.a = 0.5
-	
 	if ($DeadTimer.is_stopped()):
+		$RewardTimer.stop()
+		
+		dead_penalty_counter = 6
+		
+		speed = 100
+		
+		$AnimatedSprite.modulate = Color(0.5,0,0)
+		$AnimatedSprite.modulate.a = 0.5
+		
 		$DeadTimer.start()
+
 
 func delivery_reward():
 	if (dead_penalty_counter > 0):
@@ -170,11 +180,13 @@ func delivery_reward():
 		if ($RewardTimer.is_stopped()):
 			$RewardTimer.start()
 
+
 func stop_player():
 	speed = 0
 	
 	$DeadTimer.stop()
 	$RewardTimer.stop()
+
 
 func _on_entered_water_refill():
 	print("entered water refill")

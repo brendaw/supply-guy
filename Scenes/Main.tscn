@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=2]
+[gd_scene load_steps=12 format=2]
 
 [ext_resource path="res://Scenes/Main.gd" type="Script" id=1]
 [ext_resource path="res://Scenes/Mate.tscn" type="PackedScene" id=2]
@@ -10,6 +10,7 @@
 [ext_resource path="res://Assets/Fonts/VP Pixel.tres" type="DynamicFont" id=8]
 [ext_resource path="res://Scenes/ScoreCounter.gd" type="Script" id=9]
 [ext_resource path="res://Scenes/Boundary.tscn" type="PackedScene" id=10]
+[ext_resource path="res://Scenes/HighScoreCounter.gd" type="Script" id=11]
 
 [node name="Main" type="Node"]
 script = ExtResource( 1 )
@@ -109,6 +110,7 @@ rotation = -1.5708
 [node name="BeginHUD" type="Node" parent="HUD"]
 
 [node name="SupplyGuyLabel" type="Label" parent="HUD/BeginHUD"]
+visible = false
 margin_left = 77.0
 margin_top = 73.0
 margin_right = 199.0
@@ -118,6 +120,7 @@ custom_fonts/font = ExtResource( 8 )
 text = "Supply Guy"
 
 [node name="CopyrightLabel" type="Label" parent="HUD/BeginHUD"]
+visible = false
 margin_left = 109.0
 margin_top = 149.0
 margin_right = 350.0
@@ -130,14 +133,26 @@ text = "A Studio Carbon game."
 
 [node name="ScoreCounter" type="Label" parent="HUD/GameOnHUD"]
 visible = false
-margin_left = 10.0
+margin_left = 15.0
 margin_top = 10.0
-margin_right = 315.0
+margin_right = 173.0
 margin_bottom = 39.0
-rect_scale = Vector2( 1.25, 1.25 )
 custom_fonts/font = ExtResource( 8 )
 text = "Score: 0000000"
 script = ExtResource( 9 )
+
+[node name="HighScoreCounter" type="Label" parent="HUD/GameOnHUD"]
+visible = false
+margin_left = 185.0
+margin_top = 10.0
+margin_right = 388.0
+margin_bottom = 39.0
+custom_colors/font_color = Color( 1, 0.913725, 0, 1 )
+custom_fonts/font = ExtResource( 8 )
+text = "High Score: 0000000"
+align = 1
+valign = 1
+script = ExtResource( 11 )
 
 [node name="GameOverHUD" type="Node" parent="HUD"]
 
@@ -151,10 +166,23 @@ rect_scale = Vector2( 2, 3 )
 custom_fonts/font = ExtResource( 8 )
 text = "Game Over"
 
+[node name="CongratulationsLabel" type="Label" parent="HUD/GameOverHUD"]
+visible = false
+margin_left = 42.0
+margin_top = 60.0
+margin_right = 357.0
+margin_bottom = 89.0
+custom_colors/font_color = Color( 1, 0.913725, 0, 1 )
+custom_fonts/font = ExtResource( 8 )
+text = "Congrats! New High Score!"
+align = 1
+valign = 1
+
 [node name="PressEnterLabel" type="Label" parent="HUD"]
-margin_left = 45.0
+visible = false
+margin_left = 40.0
 margin_top = 270.0
-margin_right = 360.0
+margin_right = 355.0
 margin_bottom = 299.0
 custom_fonts/font = ExtResource( 8 )
 text = "Press \"Enter\" to start"
@@ -172,6 +200,7 @@ custom_fonts/font = ExtResource( 8 )
 text = "Get Ready!"
 align = 1
 valign = 1
+percent_visible = -0.111111
 
 [node name="StartCountdown" type="Timer" parent="."]
 
