@@ -14,6 +14,13 @@ var choosed_resource_index
 var last_choosed_resource_index
 
 var health_pace = 0
+
+var health_pace_random = 1
+
+var health_pace_difficulty = 1.25
+var health_pace_difficulty_level = 1
+var health_pace_difficulty_step = 0.5
+
 var health = 100
 
 var screen_size
@@ -86,10 +93,14 @@ func reset_current_resource():
 	$RefillTimer.start()
 
 func choose_health_pace():
-	health_pace = (randi() % 5) * 2
+	health_pace_random = (randi() % 5) * 2
 	
-	if health_pace == 0:
-		health_pace = 5
+	if health_pace_random == 0:
+		health_pace_random = 5
+	
+	health_pace_difficulty = health_pace_difficulty_level * health_pace_difficulty_step
+	
+	health_pace = health_pace_random * (health_pace_difficulty + 1)
 
 func _on_MateRefillZone_body_entered(body):
 	if body != self:
@@ -111,6 +122,10 @@ func _on_RefillTimer_timeout():
 
 func _on_HealthTimer_timeout():
 	if (on_resource_need):
+		health_pace_difficulty = health_pace_difficulty_level * health_pace_difficulty_step
+		
+		health_pace = health_pace_random * (health_pace_difficulty + 1)
+		
 		health -= health_pace
 		
 		if (health <= 0):

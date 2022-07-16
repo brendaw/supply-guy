@@ -5,6 +5,14 @@ export (PackedScene) var barricade_scene
 
 var is_game_over
 
+var total_mates
+var mates_dead_count
+
+var mate_one
+var mate_two
+var mate_three
+var mate_four
+
 func _ready():
 	randomize()
 	new_game()
@@ -21,10 +29,13 @@ func instanciate_player():
 func instanciate_mates():
 	$MateStuff/Mate.disable()
 	
-	var mate_one = mate_scene.instance()
-	var mate_two = mate_scene.instance()
-	var mate_three = mate_scene.instance()
-	var mate_four = mate_scene.instance()
+	mate_one = mate_scene.instance()
+	mate_two = mate_scene.instance()
+	mate_three = mate_scene.instance()
+	mate_four = mate_scene.instance()
+	
+	total_mates = 4
+	mates_dead_count = 0
 	
 	mate_one.position = $MateStuff/FirstStartPosition.position
 	mate_two.position = $MateStuff/SecondStartPosition.position
@@ -42,8 +53,6 @@ func instanciate_mates():
 	add_child(mate_four)
 
 
-
-
 func _on_Player_update_score(score):
 	$HUD/ScoreCounter.update_score(score)
 
@@ -51,4 +60,14 @@ func _on_Player_update_score(score):
 func _on_Mate_mate_died():
 	print("Mate died :/")
 	
-	$PlayerStuff/Player.slow_player_after_mate_dead()
+	mates_dead_count = mates_dead_count + 1
+	
+	if (mates_dead_count == total_mates):
+		is_game_over = true
+	else:
+		mate_one.health_pace_difficulty_level = mates_dead_count + 1
+		mate_two.health_pace_difficulty_level = mates_dead_count + 1
+		mate_three.health_pace_difficulty_level = mates_dead_count + 1
+		mate_four.health_pace_difficulty_level = mates_dead_count + 1
+		
+		$PlayerStuff/Player.slow_player_after_mate_dead()
