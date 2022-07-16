@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://Scenes/Main.gd" type="Script" id=1]
 [ext_resource path="res://Scenes/Mate.tscn" type="PackedScene" id=2]
@@ -9,6 +9,7 @@
 [ext_resource path="res://Scenes/KevlarResource.tscn" type="PackedScene" id=7]
 [ext_resource path="res://Assets/Fonts/VP Pixel.tres" type="DynamicFont" id=8]
 [ext_resource path="res://Scenes/ScoreCounter.gd" type="Script" id=9]
+[ext_resource path="res://Scenes/Boundary.tscn" type="PackedScene" id=10]
 
 [node name="Main" type="Node"]
 script = ExtResource( 1 )
@@ -18,8 +19,6 @@ barricade_scene = ExtResource( 3 )
 [node name="PlayerStuff" type="Node" parent="."]
 
 [node name="Player" parent="PlayerStuff" instance=ExtResource( 4 )]
-score = 0
-speed = 150
 
 [node name="StartPosition" type="Position2D" parent="PlayerStuff"]
 position = Vector2( 200, 245 )
@@ -79,6 +78,22 @@ scale = Vector2( 4, 4 )
 [node name="KevlarResource" parent="ResourcesStuff" instance=ExtResource( 7 )]
 position = Vector2( 245, 375 )
 scale = Vector2( 4, 4 )
+
+[node name="Boundaries" type="Node" parent="."]
+
+[node name="Boundary" parent="Boundaries" instance=ExtResource( 10 )]
+position = Vector2( -124, 51 )
+
+[node name="Boundary2" parent="Boundaries" instance=ExtResource( 10 )]
+position = Vector2( -118, 403 )
+
+[node name="Boundary3" parent="Boundaries" instance=ExtResource( 10 )]
+position = Vector2( -3, -45 )
+rotation = 1.5708
+
+[node name="Boundary4" parent="Boundaries" instance=ExtResource( 10 )]
+position = Vector2( 403, 524 )
+rotation = -1.5708
 
 [node name="HUD" type="Node" parent="."]
 
