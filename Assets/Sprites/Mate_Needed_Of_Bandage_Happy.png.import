@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/Mate_Needed_Of_Water.png-e9b64f1478b0cad558d34644ed305acd.stex"
+path="res://.import/Mate_Needed_Of_Bandage_Happy.png-a6da60572103f0d01839682eaf4d9cb6.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Sprites/Mate_Needed_Of_Water.png"
-dest_files=[ "res://.import/Mate_Needed_Of_Water.png-e9b64f1478b0cad558d34644ed305acd.stex" ]
+source_file="res://Assets/Sprites/Mate_Needed_Of_Bandage_Happy.png"
+dest_files=[ "res://.import/Mate_Needed_Of_Bandage_Happy.png-a6da60572103f0d01839682eaf4d9cb6.stex" ]
 
 [params]
 

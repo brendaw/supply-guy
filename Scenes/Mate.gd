@@ -30,7 +30,6 @@ func _ready():
 	
 	$CollisionShape2D.disabled = false
 	
-	$AnimatedSprite.play()
 	update_animation("empty")
 	
 	choose_some_resource_in_need()
@@ -140,7 +139,9 @@ func _on_HealthTimer_timeout():
 			$HealthTimer.stop()
 			
 		
+		if health < $HealthDisplay/HealthBar.max_value * 0.7:
+			$AnimatedSprite.frame = 1
+		if health < $HealthDisplay/HealthBar.max_value * 0.35:
+			$AnimatedSprite.frame = 2
+		
 		$HealthDisplay.update_health_bar(health)
-		
-		
-	

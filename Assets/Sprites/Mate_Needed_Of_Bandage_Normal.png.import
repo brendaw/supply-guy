@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/Mate_Needed_Of_Bandage.png-6fa5da850f5bae4689ea63023d3840a7.stex"
+path="res://.import/Mate_Needed_Of_Bandage_Normal.png-1bf2c82ba283c17f1bfc249bfc99087d.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Sprites/Mate_Needed_Of_Bandage.png"
-dest_files=[ "res://.import/Mate_Needed_Of_Bandage.png-6fa5da850f5bae4689ea63023d3840a7.stex" ]
+source_file="res://Assets/Sprites/Mate_Needed_Of_Bandage_Normal.png"
+dest_files=[ "res://.import/Mate_Needed_Of_Bandage_Normal.png-1bf2c82ba283c17f1bfc249bfc99087d.stex" ]
 
 [params]
 
