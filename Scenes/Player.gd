@@ -34,6 +34,12 @@ func start(pos):
 	
 	$AnimatedSprite.play()
 	update_animation("default")
+	
+	score = 0
+	speed = 150
+	
+	$AnimatedSprite.modulate = Color(1,1,1)
+	$AnimatedSprite.modulate.a = 1
 
 func _ready():
 	screen_size = get_viewport_rect().size
@@ -163,6 +169,12 @@ func delivery_reward():
 		
 		if ($RewardTimer.is_stopped()):
 			$RewardTimer.start()
+
+func stop_player():
+	speed = 0
+	
+	$DeadTimer.stop()
+	$RewardTimer.stop()
 
 func _on_entered_water_refill():
 	print("entered water refill")

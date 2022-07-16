@@ -103,12 +103,12 @@ func choose_health_pace():
 	health_pace = health_pace_random * (health_pace_difficulty + 1)
 
 func _on_MateRefillZone_body_entered(body):
-	if body != self:
+	if body != self && body.has_method("_on_entered_mate_refill_zone"):
 		print(body.name)
 		body._on_entered_mate_refill_zone(self)
 
 func _on_MateRefillZone_body_exited(body):
-	if body != self:
+	if body != self && body.has_method("_on_exited_mate_refill_zone"):
 		print(body.name)
 		body._on_exited_mate_refill_zone()
 

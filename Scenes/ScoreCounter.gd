@@ -1,7 +1,5 @@
 extends Label
 
-var scorea = 0
-
 func _ready():
 	pass
 
