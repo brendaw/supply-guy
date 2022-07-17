@@ -43,6 +43,8 @@ func disable_assets():
 
 
 func show_intro():
+	$ParallaxBackground/ParallaxLayer/Background.show()
+	
 	$HUD/BeginHUD/SupplyGuyLabel.show()
 	$HUD/BeginHUD/CopyrightLabel.show()
 	
@@ -53,6 +55,8 @@ func new_game():
 	is_begin_screen = false
 	is_game_over = false
 	is_game_on = true
+	
+	$ParallaxBackground.disable_scroll()
 	
 	$HUD/GameOverHUD/GameOverLabel.hide()
 	$HUD/GameOverHUD/CongratulationsLabel.hide()
@@ -180,6 +184,8 @@ func game_over():
 	
 	$HUD/PressEnterLabel.text = "Press \"Enter\" to restart"
 	$HUD/PressEnterLabel.show()
+	
+	$ParallaxBackground.enable_scroll()
 	
 	hide_player()
 	destroy_mates()
