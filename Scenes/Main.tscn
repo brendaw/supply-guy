@@ -200,10 +200,12 @@ custom_fonts/font = ExtResource( 8 )
 text = "Get Ready!"
 align = 1
 valign = 1
-percent_visible = -0.111111
 
 [node name="StartCountdown" type="Timer" parent="."]
 
+[connection signal="caught_bandage" from="PlayerStuff/Player" to="." method="_on_Player_caught_bandage"]
+[connection signal="caught_kevlar" from="PlayerStuff/Player" to="." method="_on_Player_caught_kevlar"]
+[connection signal="caught_water" from="PlayerStuff/Player" to="." method="_on_Player_caught_water"]
 [connection signal="update_score" from="PlayerStuff/Player" to="." method="_on_Player_update_score"]
 [connection signal="entered_water_refill" from="ResourcesStuff/WaterResource" to="PlayerStuff/Player" method="_on_entered_water_refill"]
 [connection signal="exited_water_refill" from="ResourcesStuff/WaterResource" to="PlayerStuff/Player" method="_on_WaterResource_exited_water_refill"]

@@ -83,11 +83,16 @@ value = 100.0
 texture_progress = ExtResource( 6 )
 
 [node name="HealthTimer" type="Timer" parent="."]
+wait_time = 0.25
 
 [node name="RefillTimer" type="Timer" parent="."]
 wait_time = 3.0
+
+[node name="HappyTimer" type="Timer" parent="."]
+wait_time = 2.0
 
 [connection signal="body_entered" from="MateRefillZone" to="." method="_on_MateRefillZone_body_entered"]
 [connection signal="body_exited" from="MateRefillZone" to="." method="_on_MateRefillZone_body_exited"]
 [connection signal="timeout" from="HealthTimer" to="." method="_on_HealthTimer_timeout"]
 [connection signal="timeout" from="RefillTimer" to="." method="_on_RefillTimer_timeout"]
+[connection signal="timeout" from="HappyTimer" to="." method="_on_HappyTimer_timeout"]

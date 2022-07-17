@@ -25,6 +25,7 @@ var health = 100
 
 var screen_size
 
+
 func _ready():
 	randomize()
 	
@@ -39,13 +40,26 @@ func _ready():
 	
 	$HealthTimer.start()
 
+
 func disable():
 	$CollisionShape2D.disabled = true
 	hide()
 	queue_free()
 
+
 func update_animation(animation):
 	$AnimatedSprite.animation = animation
+
+
+func update_health_animation():
+	if ($HappyTimer.is_stopped()):
+		if health < $HealthDisplay/HealthBar.max_value:
+			$AnimatedSprite.frame = 0
+		if health < $HealthDisplay/HealthBar.max_value * 0.7:
+			$AnimatedSprite.frame = 1
+		if health < $HealthDisplay/HealthBar.max_value * 0.35:
+			$AnimatedSprite.frame = 2
+
 
 func choose_some_resource_in_need():
 	choosed_resource_index = randi() % 3
@@ -71,6 +85,7 @@ func choose_some_resource_in_need():
 	
 	on_resource_need = true
 
+
 func reset_resources():
 	on_resource_need = false
 	
@@ -79,6 +94,7 @@ func reset_resources():
 	need_kevlar_resource = false
 	
 	$AnimatedSprite.animation = "empty"
+
 
 func reset_current_resource():
 	$HealthTimer.stop()
@@ -94,6 +110,7 @@ func reset_current_resource():
 	
 	$RefillTimer.start()
 
+
 func choose_health_pace():
 	health_pace_random = (randi() % 5) * 2
 	
@@ -104,15 +121,33 @@ func choose_health_pace():
 	
 	health_pace = health_pace_random * (health_pace_difficulty + 1)
 
+
+func player_grabbed_a_resource(resource):
+	if (resource == "water" && need_water_resource):
+		make_mate_happy()
+	
+	if (resource == "bandage" && need_bandage_resource):
+		make_mate_happy()
+	
+	if (resource == "kevlar" && need_kevlar_resource):
+		make_mate_happy()
+
+func make_mate_happy():
+	$HappyTimer.start()
+	
+	$AnimatedSprite.frame = 3
+
 func _on_MateRefillZone_body_entered(body):
 	if body != self && body.has_method("_on_entered_mate_refill_zone"):
 		print(body.name)
 		body._on_entered_mate_refill_zone(self)
 
+
 func _on_MateRefillZone_body_exited(body):
 	if body != self && body.has_method("_on_exited_mate_refill_zone"):
 		print(body.name)
 		body._on_exited_mate_refill_zone()
+
 
 func _on_RefillTimer_timeout():
 	$RefillTimer.stop()
@@ -126,13 +161,14 @@ func _on_RefillTimer_timeout():
 	
 	$HealthTimer.start()
 
+
 func _on_HealthTimer_timeout():
 	if (on_resource_need):
 		health_pace_difficulty = health_pace_difficulty_level * health_pace_difficulty_step
 		
 		health_pace = health_pace_random * (health_pace_difficulty + 1)
 		
-		health -= health_pace
+		health -= health_pace / 4
 		
 		if (health <= 0):
 			print("It's over, mate")
@@ -144,11 +180,13 @@ func _on_HealthTimer_timeout():
 			emit_signal("mate_died")
 			
 			$HealthTimer.stop()
-			
 		
-		if health < $HealthDisplay/HealthBar.max_value * 0.7:
-			$AnimatedSprite.frame = 1
-		if health < $HealthDisplay/HealthBar.max_value * 0.35:
-			$AnimatedSprite.frame = 2
-		
+		update_health_animation()
+
 		$HealthDisplay.update_health_bar(health)
+
+
+func _on_HappyTimer_timeout():
+	$HappyTimer.stop()
+	
+	update_health_animation()

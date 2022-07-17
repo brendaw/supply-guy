@@ -185,6 +185,12 @@ func game_over():
 	destroy_mates()
 	hide_barricades_and_resources()
 
+func notify_mates_player_grabbed_a_resource(resource):
+	if (not is_game_over):
+		mate_one.player_grabbed_a_resource(resource)
+		mate_two.player_grabbed_a_resource(resource)
+		mate_three.player_grabbed_a_resource(resource)
+		mate_four.player_grabbed_a_resource(resource)
 
 func _on_Player_update_score(score):
 	$HUD/GameOnHUD/ScoreCounter.update_score(score)
@@ -201,11 +207,6 @@ func _on_Mate_mate_died():
 	
 	else:
 		if (not is_game_over):
-			#mate_one.health_pace_difficulty_level = mates_dead_count + 1
-			#mate_two.health_pace_difficulty_level = mates_dead_count + 1
-			#mate_three.health_pace_difficulty_level = mates_dead_count + 1
-			#mate_four.health_pace_difficulty_level = mates_dead_count + 1
-			
 			$PlayerStuff/Player.slow_player_after_mate_dead()
 
 
@@ -229,3 +230,15 @@ func _on_StartCountdown_timeout():
 		show_hud()
 	
 	start_countdown = start_countdown - 1
+
+
+func _on_Player_caught_water():
+	notify_mates_player_grabbed_a_resource("water")
+
+
+func _on_Player_caught_bandage():
+	notify_mates_player_grabbed_a_resource("bandage")
+
+
+func _on_Player_caught_kevlar():
+	notify_mates_player_grabbed_a_resource("kevlar")
